@@ -1,0 +1,13 @@
+package com.validation.project;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ValidationsProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ValidationsProjectApplication.class, args);
+	}
+
+}
