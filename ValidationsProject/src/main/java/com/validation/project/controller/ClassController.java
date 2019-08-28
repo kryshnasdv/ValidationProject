@@ -31,8 +31,10 @@ public class ClassController {
 
 			response.setStatus("Error");
 			response.setPayload("Bad request- Binding Error");
-
-			ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, message.get(0));
+			
+			ErrorResponse errorResponse;
+			
+			errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, message.get(0));
 
 			response.setErrorResponse(errorResponse);
 
