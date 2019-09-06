@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import com.validation.project.model.ErrorResponse;
 import com.validation.project.model.Response;
 
 @RestController
+@RestControllerEndpoint(id="bandinfocheck")
 public class ClassController {
 
 	@GetMapping(value="/getBandInfoById/{employeeId}")
@@ -31,19 +33,17 @@ public class ClassController {
 
 			response.setStatus("Error");
 			response.setPayload("Bad request- Binding Error");
-			
+
 			ErrorResponse errorResponse;
-			
+
 			errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, message.get(0));
 
 			response.setErrorResponse(errorResponse);
 
 			return new ResponseEntity<Response>(response,HttpStatus.BAD_REQUEST);
-		}
-		else
-		{
+		}else{
 			response.setStatus("Success");
-			response.setPayload(band.getEmployeeId());
+			response.setPayload("EmployeeId is: "+band.getEmployeeId());
 			return new ResponseEntity<Response>(response,HttpStatus.OK);
 		}
 

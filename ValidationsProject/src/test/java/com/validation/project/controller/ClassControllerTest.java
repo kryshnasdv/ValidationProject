@@ -2,6 +2,8 @@ package com.validation.project.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
+import javax.validation.constraints.Size;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,10 @@ public class ClassControllerTest {
     @Test
     public void whenEmployeeIdIsValid() throws Exception {
     	
-        mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/1245678900")
+        mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/124567890J")
           .contentType(MediaType.APPLICATION_JSON_UTF8))
           .andExpect(MockMvcResultMatchers.status().isOk())
-          .andExpect(MockMvcResultMatchers.content().string(containsString("1245678900")));
+          .andExpect(MockMvcResultMatchers.content().string(containsString("124567890J")));
     }
     
     @Test
@@ -39,16 +41,16 @@ public class ClassControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/"+employeeId)
           .contentType(MediaType.APPLICATION_JSON_UTF8))
           .andExpect(MockMvcResultMatchers.status().isBadRequest())
-          .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId must be Alphanumeric")));
+          .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId shouldn't be blank/whitespace")));
     }
     
-    //@Test
+    @Test
     public void whenEmployeeIdIsNull() throws Exception {
     	String employeeId=null;
         mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/"+employeeId)
           .contentType(MediaType.APPLICATION_JSON_UTF8))
           .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-          .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId must be Alphanumeric")));
+          .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId Shouldn't be null")));
     }
     
     @Test
