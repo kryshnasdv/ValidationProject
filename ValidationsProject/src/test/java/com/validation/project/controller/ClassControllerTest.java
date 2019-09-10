@@ -44,14 +44,15 @@ public class ClassControllerTest {
           .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId shouldn't be blank/whitespace")));
     }
     
-    //@Test
-    public void whenEmployeeIdIsNull() throws Exception {
-    	String employeeId=null;
-        mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/"+employeeId)
-          .contentType(MediaType.APPLICATION_JSON_UTF8))
-          .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-          .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId Shouldn't be null")));
-    }
+	/*
+	 * //@Test public void whenEmployeeIdIsNull() throws Exception { String
+	 * employeeId=null;
+	 * mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/"+employeeId)
+	 * .contentType(MediaType.APPLICATION_JSON_UTF8))
+	 * .andExpect(MockMvcResultMatchers.status().is4xxClientError())
+	 * .andExpect(MockMvcResultMatchers.content().string(
+	 * containsString("EmployeeId Shouldn't be null"))); }
+	 */
     
     @Test
     public void whenEmployeeIdIsNotAlphanumeric() throws Exception {
