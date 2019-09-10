@@ -44,7 +44,7 @@ public class ClassControllerTest {
           .andExpect(MockMvcResultMatchers.content().string(containsString("EmployeeId shouldn't be blank/whitespace")));
     }
     
-    @Test
+    //@Test
     public void whenEmployeeIdIsNull() throws Exception {
     	String employeeId=null;
         mockMvc.perform(MockMvcRequestBuilders.get("/getBandInfoById/"+employeeId)
